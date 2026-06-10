@@ -1,0 +1,56 @@
+// posts.js — índice de entradas del blog.
+// Para AÑADIR una entrada: agregue un objeto aquí (arriba del todo) y cree el
+// archivo blog-<slug>.html con su contenido. El orden lo da la fecha "iso".
+window.SEMUSICA_POSTS = [
+  {
+    slug: "la-gran-pregunta",
+    title: "La Gran Pregunta: el punto de partida de todo aprendizaje profundo",
+    category: "Diseño instruccional",
+    date: "9 jun 2026",
+    iso: "2026-06-09",
+    accent: "blue",
+    pinned: true,
+    cover: "assets/blog/la-gran-pregunta.png",
+    excerpt: "El aprendizaje profundo no empieza con una respuesta: empieza con una pregunta. Por qué cada curso, capacitación y aula virtual debería diseñarse a partir de la inquietud que necesita despertar.",
+  },
+  {
+    slug: "tecnologias-digitales-formacion-humana",
+    title: "Tecnologías digitales para la formación humana",
+    category: "Transformación digital",
+    date: "8 jun 2026",
+    iso: "2026-06-08",
+    accent: "blue",
+    cover: "assets/blog/tecnologias-digitales-formacion-humana.png",
+    excerpt: "La verdadera transformación digital educativa no ocurre cuando una institución adopta tecnología, sino cuando repiensa sus procesos formativos con claridad, sentido y propósito.",
+  },
+  {
+    slug: "moodle-plataforma-lms-ecosistemas",
+    title: "Moodle como plataforma LMS: una base sólida para construir ecosistemas de aprendizaje",
+    category: "Evolucionamos Moodle",
+    date: "7 jun 2026",
+    iso: "2026-06-07",
+    accent: "green",
+    cover: "assets/blog/moodle-plataforma-lms-ecosistemas.png",
+    excerpt: "Por qué Moodle sigue siendo una de las plataformas LMS más relevantes y cómo lo evolucionamos —con aulas virtuales a medida, plugins, integraciones y paneles— hacia un verdadero ecosistema de aprendizaje.",
+  },
+  {
+    slug: "virtualizar-no-es-subir-pdfs",
+    title: "Virtualizar no es subir PDFs",
+    category: "Virtualización de cursos",
+    date: "5 jun 2026",
+    iso: "2026-06-05",
+    accent: "green",
+    cover: "assets/blog/virtualizar-no-es-subir-pdfs.png",
+    excerpt: "Tener un documento disponible en una plataforma no es vivir una experiencia de aprendizaje. Virtualizar es diseñar el recorrido, no solo trasladar archivos.",
+  },
+  {
+    slug: "lms-ecosistema-de-aprendizaje",
+    title: "LMS como ecosistema de aprendizaje, no solo como plataforma",
+    category: "Tecnología educativa",
+    date: "2 jun 2026",
+    iso: "2026-06-02",
+    accent: "blue",
+    cover: "assets/blog/lms-ecosistema-de-aprendizaje.png",
+    excerpt: "Una plataforma ofrece herramientas; un ecosistema articula procesos. Cómo un aula virtual deja de ser un repositorio de cursos para integrarse con la vida real de la institución.",
+  },
+];

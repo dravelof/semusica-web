@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Módulo de gestión de matrículas y pensiones — Sé Música</title>
+  <meta name="description" content="Matrículas, cobros y pensiones administrados dentro del aula virtual — sin plataformas externas ni conciliaciones manuales. Ideal para institutos y academias.">
+  <link rel="icon" type="image/png" href="assets/logo-color.png">
+  <meta name="author" content="Sé Música EIRL">
+  <meta name="theme-color" content="#3E4095">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="keywords" content="matrículas digitales, gestión de pensiones, cobranza institutos, academias, Sé Música Labs, Moodle, plugin de matrículas Moodle, gestión de pensiones Moodle, Moodle institutos academias">
+  <link rel="canonical" href="https://semusica.com/desarrollo-matriculas.html">
+
+  <!-- Geo / local SEO -->
+  <meta name="geo.region" content="PE-LIM">
+  <meta name="geo.placename" content="Lima, Perú">
+  <meta name="geo.position" content="-12.0464;-77.0428">
+  <meta name="ICBM" content="-12.0464, -77.0428">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_PE">
+  <meta property="og:site_name" content="Sé Música">
+  <meta property="og:title" content="Módulo de gestión de matrículas y pensiones — Sé Música">
+  <meta property="og:description" content="Matrículas, cobros y pensiones administrados dentro del aula virtual — sin plataformas externas ni conciliaciones manuales. Ideal para institutos y academias.">
+  <meta property="og:url" content="https://semusica.com/desarrollo-matriculas.html">
+  <meta property="og:image" content="https://semusica.com/assets/og-cover.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Módulo de gestión de matrículas y pensiones — Sé Música">
+  <meta name="twitter:description" content="Matrículas, cobros y pensiones administrados dentro del aula virtual — sin plataformas externas ni conciliaciones manuales. Ideal para institutos y academias.">
+  <meta name="twitter:image" content="https://semusica.com/assets/og-cover.png">
+
+  <link rel="apple-touch-icon" href="assets/logo-color.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Módulo de gestión de matrículas y pensiones para su aula virtual",
+    "serviceType": "Módulo de gestión de matrículas y pensiones para su aula virtual",
+    "url": "https://semusica.com/desarrollo-matriculas.html",
+    "description": "Matrículas, cobros y pensiones administrados dentro del aula virtual — sin plataformas externas ni conciliaciones manuales. Ideal para institutos y academias.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Sé Música",
+      "url": "https://semusica.com/",
+      "@id": "https://semusica.com/#organization"
+    },
+    "areaServed": {
+      "@type": "Place",
+      "name": "Latinoamérica"
+    },
+    "isRelatedTo": {
+      "@type": "Brand",
+      "name": "Sé Música Labs"
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="colors_and_type.css">
+  <link rel="stylesheet" href="responsive.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--sm-card); }
+    button { font: inherit; }
+    img { max-width: 100%; height: auto; }
+    a { color: inherit; }
+  </style>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="siteconfig.js"></script>
+  <script type="text/babel" src="Button.jsx"></script>
+  <script type="text/babel" src="Footer.jsx"></script>
+  <script type="text/babel" src="SiteHeader.jsx"></script>
+  <script type="text/babel" src="AulaMatriculas.jsx"></script>
+  <script type="text/babel" src="BrandIcon.jsx"></script>
+  <script type="text/babel" src="DevDetail.jsx"></script>
+  <script type="text/babel">
+    const data = {
+      accent: "blue",
+      labs: "Institutos y Academias",
+      tag: "Ideal para institutos y academias",
+      icon: "credit-card",
+      title: "Módulo de gestión de matrículas y pensiones",
+      intro: "Matrículas, cobros y pensiones administrados dentro del aula virtual — sin plataformas externas ni conciliaciones manuales entre sistemas. La operación académica y la financiera, en un mismo lugar.",
+      url: "semusica.com/aula · matrículas y pensiones",
+      caption: "Panel de Matrículas y Pensiones — estado de pago por estudiante y cobranza mensual frente a la meta.",
+
+      problemaTitle: "Lo académico y lo financiero no deberían vivir separados",
+      problema: "Institutos y academias suelen manejar las matrículas y pensiones en un sistema aparte del aula virtual, lo que obliga a conciliar pagos a mano, cruzar planillas y perseguir morosidad sin contexto. Este módulo integra la gestión de cobros dentro de la propia aula virtual: cada estudiante tiene su estado de pago junto a su avance académico, y la administración ve la cobranza del periodo en tiempo real — con alertas de pensiones vencidas y reportes listos para contabilidad.",
+
+      funciones: [
+        { t: "Matrículas por periodo", icon: "book-open", d: "Registro de matrículas por ciclo o programa, con asignación automática a los cursos del aula virtual." },
+        { t: "Control de pensiones", icon: "clock", d: "Estado de pago por estudiante, fechas de vencimiento y alertas automáticas de morosidad." },
+        { t: "Cobranzas y recaudación", icon: "bar-chart", d: "Seguimiento de la cobranza del periodo frente a la meta, con tasa de cobranza por programa." },
+        { t: "Reportes para contabilidad", icon: "edit", d: "Exportación de ingresos, pendientes y vencidos, lista para conciliar con el área financiera." },
+      ],
+    };
+    ReactDOM.createRoot(document.getElementById("root")).render(<DevDetail data={data} screenshot={<AulaMatriculas />} />);
+  </script>
+</body>
+</html>

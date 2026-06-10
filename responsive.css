@@ -1,0 +1,146 @@
+/* ============================================================
+   Sé Música — Responsive layer
+   Overrides inline grid styles via attribute selectors (+!important)
+   and shrinks the spacing scale on small screens. Loaded after the
+   component scripts so it wins the cascade.
+   ============================================================ */
+
+/* ---------- Spacing scale shrinks on smaller screens ---------- */
+@media (max-width: 900px) {
+  :root {
+    --sp-32: 72px; --sp-24: 64px; --sp-20: 52px; --sp-16: 44px;
+    --gutter: 20px;
+  }
+}
+@media (max-width: 560px) {
+  :root {
+    --sp-32: 56px; --sp-24: 48px; --sp-20: 40px; --sp-16: 36px;
+    --gutter: 16px;
+  }
+}
+
+/* ---------- Prevent horizontal overflow on phones ---------- */
+@media (max-width: 860px) {
+  html, body { overflow-x: hidden; }
+}
+
+/* ============================================================
+   GRID REFLOW (overrides inline styles)
+   ============================================================ */
+
+/* 4 & 5-up card rows → 2-up on tablet */
+@media (max-width: 900px) {
+  [style*="grid-template-columns: repeat(4, 1fr)"],
+  [style*="grid-template-columns: repeat(5, 1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
+  [style*="grid-template-columns: repeat(6, 1fr)"] { grid-template-columns: repeat(3, 1fr) !important; }
+}
+
+/* Two-column content layouts → single column on tablet/phone */
+@media (max-width: 760px) {
+  [style*="grid-template-columns: 1.35fr 1fr"],
+  [style*="grid-template-columns: 1fr 1.1fr"],
+  [style*="grid-template-columns: 1.1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1.25fr"],
+  [style*="grid-template-columns: 0.8fr 1.2fr"],
+  [style*="grid-template-columns: 0.9fr 1.1fr"],
+  [style*="grid-template-columns: 1.3fr 1fr"],
+  [style*="grid-template-columns: 1fr 1.4fr"],
+  [style*="grid-template-columns: 1.2fr 1fr"],
+  [style*="grid-template-columns: 1.05fr 0.95fr"],
+  [style*="grid-template-columns: auto 1fr"],
+  [style*="grid-template-columns: 1fr 1fr"],
+  [style*="grid-template-columns: 120px 1fr"],
+  [style*="grid-template-columns: 0.7fr 1.3fr"],
+  [style*="grid-template-columns: repeat(3, 1fr)"],
+  [style*="grid-template-columns: repeat(2, 1fr)"] { grid-template-columns: 1fr !important; }
+
+  /* Footer sitemap 4-col → 2-col */
+  [style*="grid-template-columns: 1.4fr 1fr 1fr 1fr"] { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* Phone — collapse the remaining multi-up rows */
+@media (max-width: 560px) {
+  [style*="grid-template-columns: repeat(4, 1fr)"],
+  [style*="grid-template-columns: repeat(5, 1fr)"] { grid-template-columns: 1fr !important; }
+  [style*="grid-template-columns: repeat(6, 1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
+  [style*="grid-template-columns: 1.4fr 1fr 1fr 1fr"] { grid-template-columns: 1fr !important; }
+}
+
+/* Hero — reduce the hardcoded vertical padding on small screens */
+@media (max-width: 760px) {
+  [style*="grid-template-columns: 1.05fr 0.95fr"] { padding-top: 56px !important; padding-bottom: 64px !important; gap: 40px !important; }
+  .sm-hero-stat { position: static !important; left: auto !important; bottom: auto !important; margin-top: 18px; min-width: 0 !important; }
+  /* Solid blue hero so white copy never sits on the light half; hide the photo placeholder */
+  #inicio > div { background: var(--sm-blue) !important; }
+  .sm-hero-visual { display: none !important; }
+}
+
+/* ---------- Long words / headings must not overflow & get clipped ---------- */
+@media (max-width: 860px) {
+  h1, h2, h3, p, li { overflow-wrap: break-word; word-break: break-word; }
+}
+@media (max-width: 640px) {
+  h1 { font-size: clamp(1.9rem, 8.5vw, 2.6rem) !important; }
+  h2 { font-size: clamp(1.5rem, 6.8vw, 2.1rem) !important; }
+}
+
+/* ---------- Stacked cells with side dividers → clean top dividers ---------- */
+@media (max-width: 760px) {
+  /* Misión — pilares */
+  .m-pillar { padding-left: 0 !important; border-left: none !important; padding-top: 30px !important; }
+  .m-pillar + .m-pillar { border-top: 1px solid rgba(255,255,255,.18); }
+  /* Acción social — columna lateral */
+  .m-accion-aside { border-left: none !important; padding-left: 0 !important; padding-top: 28px !important; margin-top: 8px; border-top: 1px solid rgba(255,255,255,.25); }
+  /* StatStrip — celdas con sangría izquierda */
+  .m-stat-cell { padding-left: 0 !important; border-left: none !important; }
+  .m-stat-cell + .m-stat-cell { border-top: 1px solid var(--border); padding-top: 28px; }
+  /* Tarjetas con divisores laterales → divisor superior al apilarse */
+  .m-card { border-left: none !important; border-right: none !important; }
+  .m-card + .m-card { border-top: 1px solid var(--border) !important; }
+}
+
+/* ============================================================
+   MOCKUPS — keep their dashboard layout, scroll horizontally
+   (.sm-mock wraps the product screenshot inside the browser frame)
+   ============================================================ */
+.sm-mock { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.sm-mock > * { min-width: 680px; }
+/* Restore the mockups' internal grids regardless of viewport */
+.sm-mock [style*="grid-template-columns: repeat(4, 1fr)"] { grid-template-columns: repeat(4, 1fr) !important; }
+.sm-mock [style*="grid-template-columns: repeat(6, 1fr)"] { grid-template-columns: repeat(6, 1fr) !important; }
+.sm-mock [style*="grid-template-columns: 1fr 1.25fr"] { grid-template-columns: 1fr 1.25fr !important; }
+.sm-mock [style*="grid-template-columns: 1.35fr 1fr"] { grid-template-columns: 1.35fr 1fr !important; }
+.sm-mock [style*="grid-template-columns: 1.6fr 0.5fr 0.6fr 0.7fr"] { grid-template-columns: 1.6fr 0.5fr 0.6fr 0.7fr !important; }
+
+/* ---------- "Nuestra historia" — bloque del fundador (retrato + texto) ---------- */
+
+/* ---------- "Nuestra historia" — bloque del fundador (retrato + texto) ---------- */
+@media (max-width: 760px) {
+  .h-fundador { grid-template-columns: 1fr !important; gap: 28px !important; }
+  .h-fundador-photo { max-width: 360px; aspect-ratio: 4 / 4 !important; }
+}
+
+/* ---------- "Acción social" — franja fotográfica ---------- */
+@media (max-width: 760px) {
+  .m-accion-photo { aspect-ratio: 16 / 10 !important; }
+}
+
+/* ---------- "A lo que aspiramos" — fila de íconos compacta ----------
+   Mantener los 5 íconos en línea (son pequeños) en vez de apilarse;
+   reducir tracking del rótulo para que quepa en pantallas estrechas. */
+.m-aspiramos-icons { grid-template-columns: repeat(5, 1fr) !important; }
+@media (max-width: 560px) {
+  .m-aspiramos-icons > div { padding-left: 10px !important; padding-right: 6px !important; }
+  .m-aspiramos-icons > div + div { border-left: 1px solid var(--border) !important; }
+  .m-aspiramos-icons span { font-size: 9px !important; letter-spacing: 0.1em !important; }
+}
+
+/* ============================================================
+   HEADER — hamburger menu on small screens
+   ============================================================ */
+.sm-burger { display: none; }
+@media (max-width: 860px) {
+  .sm-nav-desktop { display: none !important; }
+  .sm-cta-desktop { display: none !important; }
+  .sm-burger { display: inline-flex !important; }
+}

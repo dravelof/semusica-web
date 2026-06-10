@@ -1,0 +1,13 @@
+{
+  "name": "semusica-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Sé Música — sitio de marketing. Build con pre-render fail-safe para SEO/GEO.",
+  "scripts": {
+    "build": "node prerender.mjs"
+  },
+  "devDependencies": {
+    "puppeteer": "^23.11.1"
+  }
+}

@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Política de privacidad y cookies — Sé Música</title>
+  <meta name="description" content="Política de privacidad y de cookies de Sé Música EIRL: qué datos tratamos, con qué finalidad, cookies de remarketing y cómo ejercer sus derechos.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://semusica.com/politica-privacidad.html">
+
+  <meta name="geo.region" content="PE-LIM">
+  <meta name="geo.placename" content="Lima, Perú">
+  <meta name="geo.position" content="-12.0464;-77.0428">
+  <meta name="ICBM" content="-12.0464, -77.0428">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_PE">
+  <meta property="og:site_name" content="Sé Música">
+  <meta property="og:title" content="Política de privacidad y cookies — Sé Música">
+  <meta property="og:description" content="Cómo tratamos sus datos y cookies conforme a la Ley N.º 29733 del Perú.">
+  <meta property="og:url" content="https://semusica.com/politica-privacidad.html">
+  <meta property="og:image" content="https://semusica.com/assets/og-cover.png">
+  <link rel="icon" type="image/png" href="assets/logo-color.png">
+  <link rel="apple-touch-icon" href="assets/logo-color.png">
+  <link rel="stylesheet" href="colors_and_type.css">
+  <link rel="stylesheet" href="responsive.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--sm-card); }
+    button { font: inherit; }
+    img { max-width: 100%; height: auto; }
+    a { color: inherit; }
+  </style>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="siteconfig.js"></script>
+  <script type="text/babel" src="Button.jsx"></script>
+  <script type="text/babel" src="Footer.jsx"></script>
+  <script type="text/babel" src="SiteHeader.jsx"></script>
+  <script type="text/babel">
+    const H2 = ({ children }) => (
+      <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(1.3rem, 2vw, 1.6rem)", lineHeight: 1.2, color: "var(--sm-ink)", margin: "0 0 14px", letterSpacing: "0.01em" }}>{children}</h2>
+    );
+    const P = ({ children }) => (
+      <p style={{ fontFamily: "var(--font-sans)", fontWeight: 300, fontSize: 16, lineHeight: 1.7, color: "var(--sm-ink-2)", margin: "0 0 14px" }}>{children}</p>
+    );
+    const LI = ({ children }) => (
+      <li style={{ fontFamily: "var(--font-sans)", fontWeight: 300, fontSize: 16, lineHeight: 1.6, color: "var(--sm-ink-2)", marginBottom: 8 }}>{children}</li>
+    );
+    const Section = ({ id, n, title, children }) => (
+      <section id={id} style={{ paddingTop: 40, marginTop: 40, borderTop: "1px solid var(--border)" }}>
+        <div style={{ fontFamily: "var(--font-display-ext)", fontSize: 13, fontWeight: 700, letterSpacing: "0.12em", color: "var(--sm-green-700)", marginBottom: 12 }}>{n}</div>
+        <H2>{title}</H2>
+        {children}
+      </section>
+    );
+
+    const Privacidad = () => (
+      <div>
+        <SiteHeader />
+
+        {/* Hero */}
+        <section style={{ background: "var(--sm-blue)", color: "#fff", padding: "var(--sp-16) var(--gutter) var(--sp-20)", position: "relative", overflow: "hidden" }}>
+          <svg aria-hidden="true" viewBox="0 0 1440 400" preserveAspectRatio="none" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: .3 }}>
+            <ellipse cx="1240" cy="80" rx="620" ry="320" fill="none" stroke="#00A859" strokeWidth="1.4" />
+            <ellipse cx="1240" cy="80" rx="800" ry="420" fill="none" stroke="#80D3A6" strokeWidth="1" />
+          </svg>
+          <div style={{ maxWidth: "var(--container-narrow)", margin: "0 auto", position: "relative" }}>
+            <a href="index.html" style={{ fontFamily: "var(--font-display)", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,.8)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8, marginBottom: 24 }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg>
+              Inicio
+            </a>
+            <h1 style={{ fontFamily: "var(--font-display-ext)", fontSize: "clamp(1.9rem, 3.4vw, 2.8rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "0.01em", color: "#fff", margin: 0, textTransform: "uppercase", textWrap: "balance" }}>
+              Política de privacidad y cookies
+            </h1>
+            <p style={{ fontFamily: "var(--font-sans)", fontWeight: 300, fontSize: 17, lineHeight: 1.6, color: "rgba(255,255,255,.85)", marginTop: 18, maxWidth: 620 }}>
+              En Sé Música EIRL respetamos su privacidad y tratamos sus datos conforme a la Ley N.º 29733, Ley de Protección de Datos Personales del Perú, y su reglamento.
+            </p>
+            <div style={{ marginTop: 18, fontFamily: "var(--font-display)", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,.6)" }}>
+              Última actualización: junio de 2026
+            </div>
+          </div>
+        </section>
+
+        {/* Contenido */}
+        <main style={{ maxWidth: "var(--container-narrow)", margin: "0 auto", padding: "var(--sp-16) var(--gutter) var(--sp-24)" }}>
+          <Section id="responsable" n="01" title="Responsable del tratamiento">
+            <P>El responsable del tratamiento de sus datos personales es <strong style={{ fontWeight: 600, color: "var(--sm-ink)" }}>Sé Música EIRL</strong>, con domicilio en Lima, Perú. Para cualquier consulta sobre privacidad puede escribirnos a <strong style={{ fontWeight: 600, color: "var(--sm-ink)" }}>contacto@semusica.com</strong>.</P>
+          </Section>
+
+          <Section id="datos" n="02" title="Qué datos recopilamos">
+            <P>Recopilamos únicamente los datos que usted nos proporciona de forma voluntaria a través de nuestro formulario de contacto:</P>
+            <ul style={{ paddingLeft: 22, margin: "0 0 14px" }}>
+              <LI>Nombre completo.</LI>
+              <LI>Empresa u organización.</LI>
+              <LI>Correo electrónico.</LI>
+              <LI>El mensaje o consulta que decida compartir.</LI>
+            </ul>
+            <P>Adicionalmente, mediante cookies podemos recopilar datos de navegación de forma agregada (ver la sección de cookies).</P>
+          </Section>
+
+          <Section id="finalidad" n="03" title="Finalidad y base legal">
+            <P>Tratamos sus datos para: (i) responder a sus consultas y agendar reuniones de diagnóstico; (ii) brindarle información sobre nuestros servicios; y (iii) con su consentimiento, mostrarle publicidad relevante mediante remarketing.</P>
+            <P>La base legal del tratamiento es su <strong style={{ fontWeight: 600, color: "var(--sm-ink)" }}>consentimiento</strong>, otorgado al enviarnos el formulario o al aceptar las cookies.</P>
+          </Section>
+
+          <Section id="cookies" n="04" title="Cookies y remarketing">
+            <P>Utilizamos cookies para que el sitio funcione correctamente, para analizar su uso de forma agregada y —solo con su autorización— para <strong style={{ fontWeight: 600, color: "var(--sm-ink)" }}>remarketing</strong>: mostrarle nuestros anuncios cuando visite otros sitios web o redes sociales.</P>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, margin: "20px 0 18px" }}>
+              {[
+                ["Necesarias", "Imprescindibles para el funcionamiento del sitio. No requieren consentimiento."],
+                ["Analíticas", "Nos ayudan a entender cómo se usa el sitio, de forma anónima y agregada."],
+                ["Remarketing", "De terceros (p. ej. Google, Meta) para mostrarle nuestros anuncios. Solo si las acepta."],
+              ].map(([t, d]) => (
+                <div key={t} style={{ background: "var(--sm-surface)", border: "1px solid var(--border)", borderRadius: 14, padding: "18px 20px" }}>
+                  <div style={{ fontFamily: "var(--font-display)", fontSize: 14, fontWeight: 700, color: "var(--sm-ink)", textTransform: "uppercase", letterSpacing: "0.04em", marginBottom: 8 }}>{t}</div>
+                  <div style={{ fontFamily: "var(--font-sans)", fontSize: 13.5, fontWeight: 300, lineHeight: 1.55, color: "var(--sm-ink-3)" }}>{d}</div>
+                </div>
+              ))}
+            </div>
+            <P>Puede aceptar o rechazar las cookies opcionales la primera vez que visita el sitio, y cambiar su decisión en cualquier momento desde el botón inferior.</P>
+            <div style={{ marginTop: 18 }}>
+              <Button variant="primary" onClick={() => { if (window.semAbrirCookies) window.semAbrirCookies(); }}>Gestionar mis preferencias de cookies</Button>
+            </div>
+          </Section>
+
+          <Section id="conservacion" n="05" title="Conservación y seguridad">
+            <P>Conservamos sus datos durante el tiempo necesario para atender su consulta y mantener la relación comercial, salvo que solicite su eliminación. Aplicamos medidas técnicas y organizativas razonables para proteger su información.</P>
+          </Section>
+
+          <Section id="terceros" n="06" title="Quiénes acceden a sus datos">
+            <P>No vendemos sus datos. Podemos apoyarnos en proveedores tecnológicos (correo, alojamiento, plataformas de publicidad) que actúan según nuestras instrucciones y con las debidas garantías de confidencialidad.</P>
+          </Section>
+
+          <Section id="derechos" n="07" title="Sus derechos">
+            <P>Usted puede ejercer en todo momento sus derechos de <strong style={{ fontWeight: 600, color: "var(--sm-ink)" }}>acceso, rectificación, cancelación y oposición</strong> (derechos ARCO), así como retirar su consentimiento.</P>
+            <P>Para ejercerlos, escríbanos a <strong style={{ fontWeight: 600, color: "var(--sm-ink)" }}>contacto@semusica.com</strong> indicando su solicitud. Atenderemos su pedido en los plazos que establece la normativa vigente.</P>
+          </Section>
+
+          <Section id="cambios" n="08" title="Cambios en esta política">
+            <P>Podemos actualizar esta política para reflejar cambios legales o en nuestros servicios. Publicaremos cualquier modificación en esta misma página, indicando la fecha de última actualización.</P>
+          </Section>
+        </main>
+
+        <Footer />
+      </div>
+    );
+    ReactDOM.createRoot(document.getElementById("root")).render(<Privacidad />);
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+# ─────────────────────────────────────────────────────────────
+# Sé Música · Netlify _redirects
+# Ubicar en la raíz de la carpeta publicada (junto a index.html, _headers).
+# Formato: origen   destino   código
+# ─────────────────────────────────────────────────────────────
+
+# ── URLs heredadas de Wix → nueva estructura (301 permanente) ──
+# La home antigua "/inicio" colapsa en la raíz.
+/inicio                    /                                301
+
+# Evita una home duplicada en "/index.html": canoniza siempre en la raíz "/".
+/index.html                /                                301
+
+# "/nosotros" se mapea a la página equivalente actual (no a la home):
+# conserva la relevancia temática y transfiere mejor el SEO heredado.
+/nosotros                  /nuestra-historia.html           301
+
+# "/aulas-virtuales" (Opción B del brief: conservar valor SEO) se
+# consolida en la página de servicio corporativa ya existente.
+/aulas-virtuales           /servicio-aulas-virtuales.html   301
+
+# Política de privacidad: el archivo real es "politica-privacidad.html"
+# (sin el "de" del slug antiguo de Wix).
+/politica-de-privacidad    /politica-privacidad.html        301
+
+# ── Notas ──
+# · NO añadir un catch-all SPA (/* /index.html 200): el sitio es
+#   multipágina con .html reales; un rewrite global rompería las rutas.
+# · Variantes con barra final las normaliza Netlify automáticamente.

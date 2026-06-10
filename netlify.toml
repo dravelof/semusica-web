@@ -1,0 +1,24 @@
+# ─────────────────────────────────────────────────────────────
+# Sé Música · Netlify — DESPLIEGUE DESDE GIT CON PRE-RENDER
+#
+# Esta configuración ejecuta el pre-render (prerender.mjs) en el build:
+# genera la carpeta dist/ con el sitio + el contenido ya "revelado" en
+# el HTML de cada página, para que buscadores y motores de IA que NO
+# ejecutan JavaScript lean todo (elimina el problema de "solo SM").
+#
+# A prueba de fallos: si el pre-render fallara, dist/ conserva el sitio
+# funcional; el deploy nunca se rompe.
+#
+# IMPORTANTE: con esta configuración el sitio se publica conectando un
+# repositorio Git a Netlify (NO arrastrando la carpeta). Netlify lee
+# este archivo y aplica el build, el directorio de publicación y las
+# variables de entorno automáticamente.
+# ─────────────────────────────────────────────────────────────
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+  PUPPETEER_CACHE_DIR = "/opt/build/repo/.cache/puppeteer"

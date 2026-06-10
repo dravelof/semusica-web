@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Libro de Reclamaciones — Sé Música</title>
+  <meta name="description" content="Libro de Reclamaciones virtual de Sé Música EIRL, conforme al Código de Protección y Defensa del Consumidor (Ley N.º 29571).">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://semusica.com/libro-de-reclamaciones.html">
+
+  <meta name="geo.region" content="PE-LIM">
+  <meta name="geo.placename" content="Lima, Perú">
+  <meta name="geo.position" content="-12.0464;-77.0428">
+  <meta name="ICBM" content="-12.0464, -77.0428">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_PE">
+  <meta property="og:site_name" content="Sé Música">
+  <meta property="og:title" content="Libro de Reclamaciones — Sé Música">
+  <meta property="og:description" content="Libro de Reclamaciones virtual de Sé Música EIRL, conforme a la Ley N.º 29571.">
+  <meta property="og:url" content="https://semusica.com/libro-de-reclamaciones.html">
+  <meta property="og:image" content="https://semusica.com/assets/og-cover.png">
+  <link rel="icon" type="image/png" href="assets/logo-color.png">
+  <link rel="apple-touch-icon" href="assets/logo-color.png">
+  <link rel="stylesheet" href="colors_and_type.css">
+  <link rel="stylesheet" href="responsive.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--sm-card); }
+    button { font: inherit; }
+    img { max-width: 100%; height: auto; }
+    a { color: inherit; }
+  </style>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- Formulario estático para detección de Netlify Forms (el visible lo renderiza React) -->
+  <form name="libro-reclamaciones" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="libro-reclamaciones" />
+    <input name="fecha-envio" />
+    <input name="nombre" />
+    <input name="documento" />
+    <input name="telefono" />
+    <input type="email" name="email" />
+    <input name="domicilio" />
+    <select name="tipo-bien"><option>Servicio</option><option>Producto</option></select>
+    <input name="monto" />
+    <textarea name="descripcion-bien"></textarea>
+    <input type="radio" name="tipo" value="Reclamo" /><input type="radio" name="tipo" value="Queja" />
+    <textarea name="detalle"></textarea>
+    <textarea name="pedido"></textarea>
+    <input name="bot-field" />
+  </form>
+
+
+  <script src="siteconfig.js"></script>
+  <script type="text/babel" src="Button.jsx"></script>
+  <script type="text/babel" src="Footer.jsx"></script>
+  <script type="text/babel" src="SiteHeader.jsx"></script>
+  <script type="text/babel">
+    const { useState } = React;
+
+    const Label = ({ children }) => (
+      <span style={{ fontFamily: "var(--font-sans)", fontSize: 13, fontWeight: 600, color: "var(--sm-ink)", marginBottom: 6, display: "block" }}>{children}</span>
+    );
+    const inputStyle = { font: "inherit", fontSize: 14, fontWeight: 300, padding: "11px 14px", border: "1px solid var(--border-strong)", borderRadius: 8, background: "#fff", color: "var(--sm-ink)", outline: "none", width: "100%" };
+
+    const TextField = ({ label, value, onChange, type = "text", placeholder, required, name }) => (
+      <label style={{ display: "block" }}>
+        <Label>{label}{required && <span style={{ color: "var(--sm-danger)" }}> *</span>}</Label>
+        <input type={type} name={name} value={value} placeholder={placeholder} required={required}
+          onChange={(e) => onChange(e.target.value)} style={inputStyle} />
+      </label>
+    );
+
+    const SectionTitle = ({ n, children }) => (
+      <div style={{ display: "flex", alignItems: "baseline", gap: 14, margin: "8px 0 4px" }}>
+        <span style={{ fontFamily: "var(--font-display-ext)", fontSize: 20, fontWeight: 700, color: "var(--sm-green-700)" }}>{n}</span>
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 700, color: "var(--sm-ink)", margin: 0, textTransform: "uppercase", letterSpacing: "0.03em" }}>{children}</h2>
+      </div>
+    );
+
+    const Libro = () => {
+      const [f, setF] = useState({
+        nombre: "", documento: "", domicilio: "", telefono: "", email: "",
+        menor: "", apoderado: "",
+        tipoBien: "Servicio", monto: "", descripcionBien: "",
+        tipo: "Reclamo", detalle: "", pedido: "",
+      });
+      const [sent, setSent] = useState(false);
+      const set = (k) => (v) => setF((s) => ({ ...s, [k]: v }));
+
+      // El envío lo gestiona Netlify Forms vía POST nativo (sin mailto).
+
+
+      return (
+        <div>
+          <SiteHeader />
+
+          {/* Hero */}
+          <section style={{ background: "var(--sm-blue)", color: "#fff", padding: "var(--sp-16) var(--gutter) var(--sp-20)", position: "relative", overflow: "hidden" }}>
+            <svg aria-hidden="true" viewBox="0 0 1440 400" preserveAspectRatio="none" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: .3 }}>
+              <ellipse cx="1240" cy="80" rx="620" ry="320" fill="none" stroke="#00A859" strokeWidth="1.4" />
+            </svg>
+            <div style={{ maxWidth: "var(--container-narrow)", margin: "0 auto", position: "relative" }}>
+              <a href="index.html" style={{ fontFamily: "var(--font-display)", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,.8)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8, marginBottom: 24 }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg>
+                Inicio
+              </a>
+              <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
+                <div style={{ width: 52, height: 52, borderRadius: 12, background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--sm-blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M14 4v5h5"/><line x1="8" y1="13" x2="15" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>
+                </div>
+                <h1 style={{ fontFamily: "var(--font-display-ext)", fontSize: "clamp(1.9rem, 3.4vw, 2.8rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "0.01em", color: "#fff", margin: 0, textTransform: "uppercase" }}>
+                  Libro de Reclamaciones
+                </h1>
+              </div>
+              <p style={{ fontFamily: "var(--font-sans)", fontWeight: 300, fontSize: 16, lineHeight: 1.6, color: "rgba(255,255,255,.85)", marginTop: 18, maxWidth: 640 }}>
+                Conforme al Código de Protección y Defensa del Consumidor (Ley N.º 29571). Complete el formulario y recibirá una respuesta en un plazo no mayor a 15 días hábiles.
+              </p>
+            </div>
+          </section>
+
+          {/* Form */}
+          <main style={{ maxWidth: "var(--container-narrow)", margin: "0 auto", padding: "var(--sp-16) var(--gutter) var(--sp-24)" }}>
+            {sent ? (
+              <div style={{ background: "var(--sm-green-50)", border: "1px solid var(--sm-green-200)", borderRadius: 16, padding: "32px 34px" }}>
+                <h2 style={{ fontFamily: "var(--font-display)", fontSize: 22, fontWeight: 700, color: "var(--sm-green-700)", margin: "0 0 10px", textTransform: "uppercase", letterSpacing: "0.02em" }}>Reclamación registrada</h2>
+                <p style={{ fontFamily: "var(--font-sans)", fontWeight: 300, fontSize: 16, lineHeight: 1.6, color: "var(--sm-ink-2)", margin: 0 }}>
+                  Abrimos su correo con la hoja de reclamación lista. <strong style={{ fontWeight: 600 }}>Complete el envío desde su cuenta de correo</strong> a contacto@semusica.com. Le responderemos dentro del plazo de ley (15 días hábiles).
+                </p>
+              </div>
+            ) : (
+              <form name="libro-reclamaciones" method="POST" action="index.html?enviado=reclamo" data-netlify="true" netlify-honeypot="bot-field" onSubmit={(e) => window.semSubmitForm(e, "reclamo")} style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+                <input type="hidden" name="form-name" value="libro-reclamaciones" />
+                <input type="hidden" name="fecha-envio" value={new Date().toISOString()} />
+                <p style={{ display: "none" }}><label>No llenar: <input name="bot-field" /></label></p>
+                <div style={{ background: "var(--sm-surface)", border: "1px solid var(--border)", borderRadius: 12, padding: "16px 18px", fontFamily: "var(--font-sans)", fontSize: 13.5, color: "var(--sm-ink-3)", lineHeight: 1.55 }}>
+                  <strong style={{ color: "var(--sm-ink)" }}>Proveedor:</strong> Sé Música EIRL · <strong style={{ color: "var(--sm-ink)" }}>Fecha:</strong> {new Date().toLocaleDateString("es-PE")}
+                </div>
+
+                <SectionTitle n="01">Identificación del consumidor reclamante</SectionTitle>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+                  <TextField label="Nombre completo" name="nombre" value={f.nombre} onChange={set("nombre")} required />
+                  <TextField label="Documento (DNI / CE)" name="documento" value={f.documento} onChange={set("documento")} required />
+                  <TextField label="Teléfono" name="telefono" value={f.telefono} onChange={set("telefono")} />
+                  <TextField label="Correo electrónico" name="email" type="email" value={f.email} onChange={set("email")} required />
+                </div>
+                <TextField label="Domicilio" name="domicilio" value={f.domicilio} onChange={set("domicilio")} />
+
+                <SectionTitle n="02">Identificación del bien contratado</SectionTitle>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+                  <label style={{ display: "block" }}>
+                    <Label>Tipo</Label>
+                    <select name="tipo-bien" value={f.tipoBien} onChange={(e) => set("tipoBien")(e.target.value)} style={inputStyle}>
+                      <option>Servicio</option>
+                      <option>Producto</option>
+                    </select>
+                  </label>
+                  <TextField label="Monto reclamado (S/)" name="monto" value={f.monto} onChange={set("monto")} placeholder="Opcional" />
+                </div>
+                <label style={{ display: "block" }}>
+                  <Label>Descripción del bien o servicio</Label>
+                  <textarea rows={2} name="descripcion-bien" value={f.descripcionBien} onChange={(e) => set("descripcionBien")(e.target.value)} style={{ ...inputStyle, resize: "vertical" }} />
+                </label>
+
+                <SectionTitle n="03">Detalle de la reclamación</SectionTitle>
+                <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+                  {[["Reclamo", "Disconformidad con el bien o servicio"], ["Queja", "Malestar respecto a la atención"]].map(([t, d]) => (
+                    <label key={t} style={{ display: "flex", gap: 10, alignItems: "flex-start", cursor: "pointer", flex: "1 1 240px", border: "1px solid var(--border-strong)", borderRadius: 10, padding: "12px 14px", background: f.tipo === t ? "var(--sm-blue-50)" : "#fff" }}>
+                      <input type="radio" name="tipo" value={t} checked={f.tipo === t} onChange={() => set("tipo")(t)} style={{ marginTop: 3, accentColor: "var(--sm-blue)" }} />
+                      <span>
+                        <span style={{ fontFamily: "var(--font-sans)", fontSize: 14, fontWeight: 600, color: "var(--sm-ink)", display: "block" }}>{t}</span>
+                        <span style={{ fontFamily: "var(--font-sans)", fontSize: 13, fontWeight: 300, color: "var(--sm-ink-3)" }}>{d}</span>
+                      </span>
+                    </label>
+                  ))}
+                </div>
+                <label style={{ display: "block" }}>
+                  <Label>Detalle</Label>
+                  <textarea rows={4} name="detalle" value={f.detalle} onChange={(e) => set("detalle")(e.target.value)} required placeholder="Describa los hechos…" style={{ ...inputStyle, resize: "vertical" }} />
+                </label>
+                <label style={{ display: "block" }}>
+                  <Label>Pedido del consumidor</Label>
+                  <textarea rows={3} name="pedido" value={f.pedido} onChange={(e) => set("pedido")(e.target.value)} required placeholder="¿Qué solicita?" style={{ ...inputStyle, resize: "vertical" }} />
+                </label>
+
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: 12.5, fontWeight: 300, color: "var(--sm-ink-3)", lineHeight: 1.55, margin: "4px 0 0" }}>
+                  * La formulación del reclamo no impide acudir a otras vías de solución de controversias ni es requisito previo para presentar una denuncia ante INDECOPI. El proveedor debe dar respuesta en un plazo no mayor a quince (15) días hábiles.
+                </p>
+
+                <div>
+                  <Button type="submit" variant="primary" size="lg">Enviar reclamación</Button>
+                </div>
+              </form>
+            )}
+          </main>
+
+          <Footer />
+        </div>
+      );
+    };
+    ReactDOM.createRoot(document.getElementById("root")).render(<Libro />);
+  </script>
+</body>
+</html>
