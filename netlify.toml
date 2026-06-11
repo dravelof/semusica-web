@@ -18,6 +18,28 @@
   # Sin comando de build: publicamos los archivos directamente.
   publish = "."
 
+# ── Redirecciones 301 reforzadas (force=true → se aplican siempre) ──
+# Garantía extra para las rutas heredadas de Wix: aunque exista cualquier
+# archivo o caché de borde con ese nombre, la redirección manda.
+# (El archivo _redirects también las contiene; esto es cinturón y tirantes.)
+[[redirects]]
+  from = "/inicio"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/e-learning-musical"
+  to = "/"
+  status = 301
+  force = true
+
 # Cabeceras de caché para los recursos estáticos (rendimiento).
 [[headers]]
   for = "/assets/*"
