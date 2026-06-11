@@ -2,5 +2,8 @@
   "name": "semusica-web",
   "version": "2.0.0",
   "private": true,
-  "description": "Sé Música — sitio de marketing. Sitio estático con contenido indexable (SEO/GEO) escrito en cada página. Sin build."
+  "description": "Sé Música — sitio de marketing. Sitio estático con contenido indexable (SEO/GEO) escrito en cada página. Sin build real.",
+  "scripts": {
+    "build": "echo 'Sitio estatico: no requiere build. Publicando archivos tal cual.'"
+  }
 }
