@@ -1,24 +1,25 @@
 # ─────────────────────────────────────────────────────────────
-# Sé Música · Netlify — DESPLIEGUE DESDE GIT CON PRE-RENDER
+# Sé Música · Netlify — DESPLIEGUE ESTÁTICO (sin build)
 #
-# Esta configuración ejecuta el pre-render (prerender.mjs) en el build:
-# genera la carpeta dist/ con el sitio + el contenido ya "revelado" en
-# el HTML de cada página, para que buscadores y motores de IA que NO
-# ejecutan JavaScript lean todo (elimina el problema de "solo SM").
+# El sitio es 100% estático: HTML + CSS + JS servidos tal cual.
+# El contenido para buscadores ya está escrito dentro de cada
+# página (bloques <noscript> indexables), así que NO se necesita
+# ningún proceso de build, ni Node, ni Chrome/Puppeteer.
 #
-# A prueba de fallos: si el pre-render fallara, dist/ conserva el sitio
-# funcional; el deploy nunca se rompe.
+# Resultado: despliegues instantáneos y a prueba de fallos.
+# Imposible que falle por "Chrome no encontrado" o por timeout.
 #
-# IMPORTANTE: con esta configuración el sitio se publica conectando un
-# repositorio Git a Netlify (NO arrastrando la carpeta). Netlify lee
-# este archivo y aplica el build, el directorio de publicación y las
-# variables de entorno automáticamente.
+# Funciona igual conectando el repositorio Git a Netlify o
+# arrastrando la carpeta: en ambos casos se publican los archivos
+# tal cual, sin compilar nada.
 # ─────────────────────────────────────────────────────────────
 
 [build]
-  command = "npm run build"
-  publish = "dist"
+  # Sin comando de build: publicamos los archivos directamente.
+  publish = "."
 
-[build.environment]
-  NODE_VERSION = "20"
-  PUPPETEER_CACHE_DIR = "/opt/build/repo/.cache/puppeteer"
+# Cabeceras de caché para los recursos estáticos (rendimiento).
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

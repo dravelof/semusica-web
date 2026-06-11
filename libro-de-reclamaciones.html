@@ -39,6 +39,17 @@
 <body>
   <div id="root"></div>
 
+  <!-- Respaldo indexable (SEO/GEO) — solo visible sin JavaScript. Con JS, React monta sobre #root y este bloque no se renderiza. -->
+  <noscript>
+    <main>
+      <h1>LIBRO DE RECLAMACIONES</h1>
+      <p>Conforme al Código de Protección y Defensa del Consumidor (Ley N.º 29571). Complete el formulario y recibirá una respuesta en un plazo no mayor a 15 días hábiles.</p>
+      <h2>Identificación del consumidor reclamante</h2>
+      <h2>Identificación del bien contratado</h2>
+      <h2>Detalle de la reclamación</h2>
+    </main>
+  </noscript>
+
   <!-- Formulario estático para detección de Netlify Forms (el visible lo renderiza React) -->
   <form name="libro-reclamaciones" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
     <input type="hidden" name="form-name" value="libro-reclamaciones" />

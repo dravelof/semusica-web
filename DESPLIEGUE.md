@@ -1,69 +1,43 @@
-# Despliegue · Sé Música (Opción A — pre-render para SEO/GEO)
+# Despliegue de semusica.com
 
-## Qué se añadió y por qué
+El sitio es **estático**: HTML, CSS y JavaScript que se sirven tal cual.
+No hay build, ni Node, ni Chrome. El contenido que leen Google y los
+buscadores ya está escrito dentro de cada página (bloques `<noscript>`),
+así que el despliegue es instantáneo y no puede fallar por compilación.
 
-El sitio renderiza su contenido en el navegador (React + Babel). Eso deja el
-HTML servido casi vacío para quien **no ejecuta JavaScript** — sobre todo los
-motores de IA (GPTBot, ClaudeBot, PerplexityBot, Google-Extended) → 0 presencia
-en respuestas generativas, y peor rastreo general.
+## Opción 1 · Publicar desde Git (recomendada)
 
-La **Opción A** resuelve esto pre-renderizando cada página en el momento del
-despliegue: el HTML que se publica ya contiene todo el contenido (titulares,
-textos, servicios, enlaces) listo para rastrear. React vuelve a montar encima al
-cargar, así que **lo que ve la persona usuaria no cambia en absoluto**.
+1. Sube/actualiza los archivos en tu repositorio de GitHub.
+2. En Netlify, el sitio ya está enlazado al repo. Cada vez que hagas
+   *commit*, Netlify publica solo. No requiere comando de build:
+   `netlify.toml` indica `publish = "."` (publica los archivos directamente).
 
-## Archivos nuevos
+## Opción 2 · Arrastrar y soltar
 
-| Archivo | Para qué |
-|---|---|
-| `prerender.mjs` | El build: copia el sitio a `dist/` y le inyecta el HTML pre-renderizado. |
-| `package.json` | Define `npm run build` y la dependencia (Puppeteer). |
-| `netlify.toml` | Le dice a Netlify que ejecute el build y publique `dist/`. |
+1. Entra a tu sitio en Netlify → pestaña **Deploys**.
+2. Arrastra la carpeta del sitio a la zona "Drag and drop your site folder".
+3. Listo: se publica al instante.
 
-> **A prueba de fallos:** si el pre-render falla por lo que sea, el deploy **no
-> se rompe** — `dist/` ya contiene el sitio funcionando igual que hoy. El
-> pre-render solo *añade* contenido estático; nunca puede dejar el sitio peor
-> que ahora.
+## Verificar que el contenido es indexable (adiós al "SM")
 
-## Requisito único
+Tras desplegar, abre el sitio y haz **clic derecho → Ver código fuente**
+(no "Inspeccionar"). Busca (Ctrl/Cmd+F) un texto como
+**"Sé Música diseña, implementa"** en la home, o el titular de cualquier
+página. Si aparece el texto real → el contenido es legible para buscadores
+y motores de IA. Ya no aparece solo "SM".
 
-Netlify (o tú, en local) tiene que **ejecutar el build**. Hay dos formas:
+Cada página incluye:
 
-### A) Despliegue conectado a Git *(recomendado)*
-Si tu sitio en Netlify está enlazado a un repositorio, no hay que hacer nada
-manual: en cada push Netlify corre `npm run build` y publica `dist/`.
+- un único `<h1>`, subtítulos `<h2>`/`<h3>` y párrafos reales dentro de
+  un bloque `<noscript>` (invisible para los visitantes con JavaScript:
+  React monta la versión interactiva idéntica sobre `#root`).
+- metadatos Open Graph / Twitter, JSON-LD (datos estructurados) y
+  `sitemap.xml` + `robots.txt` para indexación.
 
-- En **Site settings → Build & deploy**, confirma:
-  - **Base directory:** la carpeta del sitio (donde está `package.json`).
-  - **Build command:** `npm run build`
-  - **Publish directory:** `dist`
-- El `netlify.toml` ya deja estos valores por defecto.
+## Redirecciones (archivo `_redirects`)
 
-### B) Despliegue manual (arrastrar carpeta)
-Si subes la carpeta a mano (drag-and-drop), antes ejecuta una vez en tu equipo:
+- `/inicio` → `/`
+- `/nosotros` → `/nuestra-historia.html`
+- `/index.html` → `/`
 
-```bash
-npm install      # instala Puppeteer (descarga Chromium)
-npm run build    # genera dist/ con el contenido pre-renderizado
-```
-
-…y arrastra la carpeta **`dist/`** (no la carpeta de origen) a Netlify.
-
-> Si **no puedes** ejecutar un build en ninguno de los dos modos, dímelo: hay
-> una alternativa sin build (contenido estático escrito a mano en cada página),
-> con una pequeña contrapartida visual de menos de un segundo.
-
-## Comprobar que funcionó
-
-Tras desplegar, abre el sitio y haz **clic derecho → Ver código fuente** (no
-"Inspeccionar"). Deberías ver el contenido real (titulares, párrafos) dentro de
-`<div id="root">…</div>`, entre los comentarios `PRERENDER:START`/`END`.
-Si solo ves `<div id="root"></div>` vacío, el build no corrió (revisa el log de
-Netlify) — pero el sitio sigue funcionando con normalidad.
-
-## Importante para no perder fidelidad
-
-`prerender.mjs` lee los **mismos `.jsx`** de siempre como fuente de verdad. No
-edites nunca el HTML inyectado a mano: cámbialo en los componentes y el siguiente
-build lo regenera. Así nunca hay desajuste (drift) entre lo estático y lo que
-renderiza React.
+Esto evita contenido duplicado y que las rutas antiguas compitan con la home.
