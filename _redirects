@@ -15,6 +15,13 @@
 # conserva la relevancia temática y transfiere mejor el SEO heredado.
 /nosotros                  /nuestra-historia.html           301
 
+# Ruta antigua de la narrativa "e-Learning Musical": ya no existe como
+# página independiente. Se consolida en la home para no competir con la
+# narrativa actual y recoger el SEO heredado. (Si en el futuro se crea una
+# página especializada, cambiar el destino aquí.)
+/e-learning-musical        /                                301
+/elearning-musical         /                                301
+
 # "/aulas-virtuales" (Opción B del brief: conservar valor SEO) se
 # consolida en la página de servicio corporativa ya existente.
 /aulas-virtuales           /servicio-aulas-virtuales.html   301
